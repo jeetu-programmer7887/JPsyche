@@ -1,0 +1,45 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String        @id @default(cuid())
+  clerkUserId   String        @unique
+  email         String?
+  memoryProfile Json?         // Long-term patient profile (stressors, triggers, mood trend, etc.)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  chatSessions  ChatSession[]
+}
+
+model ChatSession {
+  id             String    @id @default(cuid())
+  title          String
+  summary        String?   // Rolling compressed clinical notes for older messages
+  summarizedUpTo Int       @default(0) // Message count at the time of last summarization
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages       Message[]
+}
+
+model Message {
+  id            String      @id @default(cuid())
+  role          Role
+  content       String
+  thought       String?
+  createdAt     DateTime    @default(now())
+  chatSessionId String
+  chatSession   ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  user
+  assistant
+}

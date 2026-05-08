@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8ff;
+  --on-background: #191b23;
+  --primary: #004ac6;
+  --on-primary: #ffffff;
+  --surface-container-low: #f3f3fe;
+  --on-surface: #191b23;
+  --surface: #faf8ff;
+  --outline-variant: #c3c6d7;
+  --on-surface-variant: #434655;
+}
+
+.dark {
+  --background: #1e1d2b;
+  --on-background: #e9e7f5;
+  --primary: #7c6fff;
+  --on-primary: #ffffff;
+  --surface-container-low: #2a2838;
+  --on-surface: #d4d2e8;
+  --surface: #232233;
+  --outline-variant: #3e3c55;
+  --on-surface-variant: #9492aa;
+  --surface-container: #373545;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-on-surface: var(--on-surface);
+  --color-surface: var(--surface);
+  --color-outline-variant: var(--outline-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  --font-sans: "Manrope", sans-serif;
+}
+
+@utility transition-zen {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--on-background);
+    font-family: var(--font-sans);
+  }
+
+  /* Thin Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--outline-variant);
+    border-radius: 10px;
+  }
+}

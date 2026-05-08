@@ -1,0 +1,178 @@
+"use client";
+import Link from "next/link";
+import { Brain, ArrowLeft, FileText, AlertTriangle, Users, Ban, Scale, RefreshCw } from "lucide-react";
+
+const Section = ({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: React.ElementType;
+  title: string;
+  children: React.ReactNode;
+}) => (
+  <section>
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+        <Icon className="w-5 h-5" />
+      </div>
+      <h2 className="text-xl font-bold text-on-surface">{title}</h2>
+    </div>
+    <div className="pl-12 text-on-surface-variant leading-relaxed space-y-3 text-[15px]">
+      {children}
+    </div>
+  </section>
+);
+
+export default function TermsPage() {
+  return (
+    <div className="flex-1 overflow-y-auto w-full bg-background text-on-background font-sans">
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-surface/80 border-b border-outline-variant/30">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <Brain className="w-5 h-5" />
+            </div>
+            <span className="text-primary font-bold text-xl tracking-tight">JPsyche</span>
+          </Link>
+          <Link href="/" className="flex items-center gap-1.5 text-sm text-on-surface-variant hover:text-primary transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Back to App
+          </Link>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 md:px-8 py-12 md:py-16">
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+            <FileText className="w-3.5 h-3.5" />
+            Legal Agreement
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-on-surface mb-4 leading-tight">
+            Terms of Service
+          </h1>
+          <p className="text-on-surface-variant text-base max-w-xl mx-auto leading-relaxed">
+            By using JPsyche, you agree to these terms. Please read them carefully — particularly the sections on AI limitations and emergency situations.
+          </p>
+          <p className="mt-3 text-on-surface-variant/60 text-sm">
+            Last updated: <time dateTime="2026-05-04">May 4, 2026</time>
+          </p>
+        </div>
+
+        {/* Critical Warning */}
+        <div className="mb-10 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5 text-sm leading-relaxed">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-amber-600 dark:text-amber-400 font-semibold block mb-1">
+                Not a Medical Service — Critical Safety Notice
+              </strong>
+              <span className="text-on-surface-variant">
+                JPsyche is an AI conversational tool and <strong>does not provide medical, psychiatric, or clinical advice</strong>. If you are in crisis, contact emergency services or see our{" "}
+                <Link href="/crisis" className="text-primary underline font-semibold">Crisis Resources</Link>.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-12">
+          <Section icon={FileText} title="1. Acceptance of Terms">
+            <p>
+              By accessing JPsyche, you agree to these Terms and our{" "}
+              <Link href="/privacy" className="text-primary underline hover:opacity-80 transition-opacity">Privacy Policy</Link>. If you do not agree, you must not use the Service. We reserve the right to modify these Terms; continued use constitutes acceptance.
+            </p>
+          </Section>
+
+          <Section icon={Brain} title="2. Description of Service">
+            <p>JPsyche provides an AI-powered conversational interface for emotional support and general mental wellness guidance. The Service:</p>
+            <ul className="list-disc pl-5 space-y-1.5 mt-2">
+              <li>Uses OpenAI GPT-4o-mini to generate responses.</li>
+              <li>Stores conversation history for authenticated users.</li>
+              <li>Allows guest access for up to 3 messages without account creation.</li>
+              <li>Is intended for users aged 13 and above.</li>
+            </ul>
+          </Section>
+
+          <Section icon={AlertTriangle} title="3. AI Limitations & Medical Disclaimer">
+            <p>
+              <strong className="text-on-surface">JPsyche is not a therapist, psychiatrist, or licensed mental health professional.</strong> All responses are generated by AI and must not be treated as professional medical advice, diagnosis, or treatment.
+            </p>
+            <ul className="list-disc pl-5 space-y-1.5 mt-2">
+              <li>AI responses may be inaccurate or contextually inappropriate.</li>
+              <li>The AI cannot assess your actual mental or physical state.</li>
+              <li>Do not delay seeking professional help because of any AI response.</li>
+              <li>Always consult a qualified health provider for medical concerns.</li>
+            </ul>
+          </Section>
+
+          <Section icon={Users} title="4. User Responsibilities">
+            <p>As a user, you agree to:</p>
+            <ul className="list-disc pl-5 space-y-1.5 mt-2">
+              <li>Use the Service only for lawful, personal purposes.</li>
+              <li>Provide accurate information when creating an account.</li>
+              <li>Maintain the confidentiality of your account credentials.</li>
+              <li>Not attempt to manipulate or reverse-engineer the AI system prompts.</li>
+              <li>Not use the Service to generate harmful, abusive, or illegal content.</li>
+              <li>Not use automated tools or bots to access the Service at scale.</li>
+            </ul>
+          </Section>
+
+          <Section icon={Ban} title="5. Prohibited Uses">
+            <p>You must not use JPsyche to:</p>
+            <ul className="list-disc pl-5 space-y-1.5 mt-2">
+              <li>Encourage or provide instructions for self-harm or harm to others.</li>
+              <li>Harass, threaten, or intimidate any individual.</li>
+              <li>Generate defamatory, pornographic, or exploitative content.</li>
+              <li>Attempt to exploit security vulnerabilities.</li>
+              <li>Violate any applicable law or regulation.</li>
+            </ul>
+            <p className="mt-3">Violations may result in immediate account termination.</p>
+          </Section>
+
+          <Section icon={Scale} title="6. Limitation of Liability">
+            <p>
+              To the fullest extent permitted by law, JPsyche shall <strong className="text-on-surface">not be liable</strong> for any indirect, incidental, special, or consequential damages arising from your use of the Service. This includes harm arising from reliance on AI-generated content or failure to seek professional help.
+            </p>
+            <p className="mt-3">Our total aggregate liability shall not exceed USD $10.</p>
+          </Section>
+
+          <Section icon={Ban} title="7. Termination">
+            <p>
+              We may suspend or terminate your access at any time for conduct violating these Terms. You may delete your account at any time; all conversation data will be permanently removed within 30 days.
+            </p>
+          </Section>
+
+          <Section icon={RefreshCw} title="8. Changes to Terms">
+            <p>
+              We may revise these Terms from time to time and will update the &quot;Last updated&quot; date. Continued use of the Service after changes constitutes acceptance of the new Terms.
+            </p>
+          </Section>
+
+          <Section icon={Scale} title="9. Governing Law">
+            <p>
+              These Terms are governed by applicable laws. Disputes shall be resolved through good-faith negotiation, and failing that, through binding arbitration or courts of competent jurisdiction.
+            </p>
+          </Section>
+
+          <div className="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/40">
+            <h2 className="text-lg font-bold text-on-surface mb-2">Questions About These Terms?</h2>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Contact us at{" "}
+              <a href="mailto:legal@jpsyche.app" className="text-primary underline hover:opacity-80 transition-opacity">
+                legal@jpsyche.app
+              </a>.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-8 border-t border-outline-variant/30 flex flex-wrap gap-4 justify-center text-sm text-on-surface-variant">
+          <Link href="/privacy" className="hover:text-primary transition-colors underline">Privacy Policy</Link>
+          <span className="opacity-30">•</span>
+          <Link href="/crisis" className="hover:text-primary transition-colors underline font-semibold">Crisis Resources</Link>
+          <span className="opacity-30">•</span>
+          <Link href="/" className="hover:text-primary transition-colors underline">Back to JPsyche</Link>
+        </div>
+      </main>
+    </div>
+  );
+}
