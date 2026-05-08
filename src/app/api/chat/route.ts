@@ -13,10 +13,6 @@ import {
   type PatientMemoryProfile,
 } from '@/lib/context-manager';
 
-const ai = new GoogleGenAI({
-  apiKey: getRotatedApiKey(),
-});
-
 // --- Logic to pick the API key based on 10-minute intervals ---
 function getRotatedApiKey() {
   const minutes = new Date().getMinutes();
@@ -35,6 +31,11 @@ function getRotatedApiKey() {
     return process.env.GEMINI_API_KEY3;
   }
 }
+
+const ai = new GoogleGenAI({
+  // apiKey: getRotatedApiKey(),
+  apiKey: process.env.GEMINI_API_KEY2,
+});
 
 const SYSTEM_PROMPT = `You are JPsyche, an empathetic virtual psychiatrist. 
 Crucially, before responding to the user, you MUST output your internal monologue reflecting on the user's state and your clinical approach. 
