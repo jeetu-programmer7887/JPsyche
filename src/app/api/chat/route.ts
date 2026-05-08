@@ -32,10 +32,10 @@ function getRotatedApiKey() {
   }
 }
 
-const ai = new GoogleGenAI({
-  // apiKey: getRotatedApiKey(),
-  apiKey: process.env.GEMINI_API_KEY2,
-});
+// const ai = new GoogleGenAI({
+//   // apiKey: getRotatedApiKey(),
+//   apiKey: process.env.GEMINI_API_KEY2,
+// });
 
 const SYSTEM_PROMPT = `You are JPsyche, an empathetic virtual psychiatrist. 
 Crucially, before responding to the user, you MUST output your internal monologue reflecting on the user's state and your clinical approach. 
@@ -48,9 +48,15 @@ export async function POST(req: Request) {
     // -----------------------------------------------------------------------
     // Phase 1 — Auth & basic validation (fast, no DB yet)
     // -----------------------------------------------------------------------
+
+    const currentKey = getRotatedApiKey();
+    if (!currentKey) throw new Error("No API Key available");
+
+    const ai = new GoogleGenAI({ apiKey: currentKey });
+
     const { userId } = await auth();
 
-    if (!process.env.GEMINI_API_KEY3) {
+    if (!currentKey) {
       return NextResponse.json(
         { error: 'Gemini API key not configured.' },
         { status: 500 }
