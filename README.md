@@ -15,7 +15,7 @@ A full-stack AI mental wellness chat application built with Next.js, Clerk authe
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-jpsyche.vercel.app-0070f3?logo=vercel)](https://jpsyche.vercel.app)
 
-![JPsyche Desktop Screenshot](public/Jpsyche.png)
+![JPsyche Desktop Screenshot](public/JPsyche.png)
 
 </div>
 
