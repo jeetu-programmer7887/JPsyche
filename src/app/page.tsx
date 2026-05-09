@@ -42,7 +42,7 @@ const INITIAL_MESSAGE: Message = {
 export default function Home() {
   const { userId } = useAuth();
 
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [chats, setChats] = React.useState<ChatSession[]>([]);
   const [activeChatId, setActiveChatId] = React.useState<string | null>(null);
   const [isLoadedFromStorage, setIsLoadedFromStorage] = React.useState(false);
@@ -385,7 +385,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen w-full relative overflow-hidden bg-background">
+    <div className="flex h-[100dvh] w-full relative overflow-hidden bg-background">
       <Sidebar
         isOpen={isSidebarOpen}
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -398,9 +398,9 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 relative h-screen transition-all duration-400">
+      <div className="flex-1 flex flex-col min-w-0 relative h-[100dvh] transition-all duration-400">
         {/* Header */}
-        <header className="sticky top-0 z-40 flex items-center justify-between px-4 md:px-8 py-4 backdrop-blur-md bg-surface/80 dark:bg-inverse-surface/80 border-b border-outline-variant/30 transition-colors">
+        <header className="sticky top-0 z-40 flex items-center justify-between px-4 md:px-8 py-4 pt-[max(1rem,env(safe-area-inset-top))] backdrop-blur-md bg-surface/80 dark:bg-inverse-surface/80 border-b border-outline-variant/30 transition-colors">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -624,7 +624,7 @@ export default function Home() {
         </main>
 
         {/* Floating Input Area */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 pt-16 bg-gradient-to-t from-background via-background to-transparent z-40 pointer-events-none">
+        <div className="absolute bottom-0 left-0 right-0 p-4 pt-16 pb-[max(1rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-background via-background to-transparent z-40 pointer-events-none">
           <div className="max-w-3xl mx-auto flex flex-col gap-3 relative pointer-events-auto px-1 sm:px-6">
             {isGuestLimitReached && !isLimitWarningDismissed ? (
               <motion.div

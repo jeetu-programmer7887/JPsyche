@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   description: "Your personal virtual psychiatrist chat application.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={manrope.variable}>
-      <body className="antialiased h-screen bg-background text-on-background transition-zen flex relative overflow-hidden">
+      <body className="antialiased h-[100dvh] bg-background text-on-background transition-zen flex relative overflow-hidden">
         <ClerkProvider>
           <ThemeProvider
             attribute="class"
