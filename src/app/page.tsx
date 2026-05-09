@@ -42,7 +42,11 @@ const INITIAL_MESSAGE: Message = {
 export default function Home() {
   const { userId } = useAuth();
 
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsSidebarOpen(window.innerWidth >= 768);
+  }, []);
   const [chats, setChats] = React.useState<ChatSession[]>([]);
   const [activeChatId, setActiveChatId] = React.useState<string | null>(null);
   const [isLoadedFromStorage, setIsLoadedFromStorage] = React.useState(false);
